@@ -5,9 +5,8 @@ import (
     "github.com/kataras/iris"
 )
 
-
 func Listen() {
-    app := iris.New()
+    app := routes.Router()
     // Views Root Folder
     app.RegisterView(iris.HTML("./views", ".html").Reload(true))
     // On Error Code
@@ -26,8 +25,6 @@ func Listen() {
         ctx.Application().Logger().Infof("Begin request for path: %s", ctx.Path())
         ctx.Next()
     })
-
-    routes.Handle(app)
 
     app.Run(iris.Addr(":8080"), iris.WithCharset("UTF-8"))
 }
