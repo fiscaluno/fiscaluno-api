@@ -14,6 +14,8 @@ var FILE_PATH, _ = os.Getwd()
 type Config struct {
     DB_HOST string // DB_HOST variable
     DB_NAME string // DB_NAME variable
+    DB_USER string // DB_USER variable
+    DB_PASSWORD string // DB_PASSWORD variable
 }
 
 // Configuration struct initializer
