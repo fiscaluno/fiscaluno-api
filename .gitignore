@@ -19,3 +19,5 @@ Gopkg.lock
 
 .env
 .docker_build/
+
+playground.go
