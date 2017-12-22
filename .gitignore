@@ -16,3 +16,6 @@
 .vendor/
 vendor/
 Gopkg.lock
+
+.env
+.docker_build/
