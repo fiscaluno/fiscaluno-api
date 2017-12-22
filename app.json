@@ -1,0 +1,10 @@
+{
+    "name": "Fiscaluno API",
+    "description": "Fiscaluno",
+    "keywords": [
+      "fiscaluno-api",
+      "go"
+    ],
+    "website": "http://github.com/fiscaluno/fiscaluno-api",
+    "repository": "http://github.com/fiscaluno/fiscaluno-api"
+  }
