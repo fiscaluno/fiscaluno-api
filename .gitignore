@@ -20,4 +20,6 @@ Gopkg.lock
 .env
 .docker_build/
 
+# Development
+config/config.json
 playground.go
