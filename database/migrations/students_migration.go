@@ -1,9 +1,10 @@
 package migrations
 
 type Student struct {
-    Name    string
-    Email   string
-    Age     int32
+    Id      uint
+    Name    string  `gorm:"size:100"`
+    Email   string  `gorm:"not null;unique"`
+    Age     int32   `gorm:type:tinyint;unsigned`
 }
 
 func init() {
