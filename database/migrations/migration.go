@@ -5,17 +5,18 @@ import (
     "regexp"
     "reflect"
     "github.com/fiscaluno/fiscaluno-api/database"
+    log "github.com/fiscaluno/fiscaluno-api/fiscalog"
 )
 
 // Database Instance
 var db = database.GetInstance()
 
 func init() {
-    fmt.Println("[AutoMigration: Migrating database... Wait a moment please]")
+    log.Info("Migrating database... Wait a moment please")
 }
 
 func Migrate() {
-    fmt.Println("[AutoMigration: Database migrated]")
+    log.Info("Database migrated")
 }
 
 // Create new Schema to database
@@ -25,10 +26,10 @@ func Create(Schema interface {}) {
     tableName := pattern.FindStringSubmatch(schemaString)[1]
 
     if !db.HasTable(Schema) {
-        fmt.Println(fmt.Sprintf("[AutoMigration: Creating %s table...]", tableName))
-        defer fmt.Println("[AutoMigration: Students table created]")
+        log.Info(fmt.Sprintf("Creating %s table...", tableName))
+        defer log.Info(fmt.Sprintf("%s table created", tableName))
         db.AutoMigrate(Schema)
     } else {
-        fmt.Println(fmt.Sprintf("[AutoMigration: %s table exists...]", tableName))
+        log.Info(fmt.Sprintf("%s table exists...", tableName))
     }
 }
