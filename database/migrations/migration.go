@@ -12,11 +12,11 @@ import (
 var db = database.GetInstance()
 
 func init() {
-    log.Info.Println("Migrating database... Wait a moment please")
+    log.Info("Migrating database... Wait a moment please")
 }
 
 func Migrate() {
-    log.Info.Println("Database migrated")
+    log.Info("Database migrated")
 }
 
 // Create new Schema to database
@@ -26,10 +26,10 @@ func Create(Schema interface {}) {
     tableName := pattern.FindStringSubmatch(schemaString)[1]
 
     if !db.HasTable(Schema) {
-        log.Info.Println(fmt.Sprintf("Creating %s table...", tableName))
-        defer log.Info.Println(fmt.Sprintf("%s table created", tableName))
+        log.Info(fmt.Sprintf("Creating %s table...", tableName))
+        defer log.Info(fmt.Sprintf("%s table created", tableName))
         db.AutoMigrate(Schema)
     } else {
-        log.Info.Println(fmt.Sprintf("%s table exists...", tableName))
+        log.Info(fmt.Sprintf("%s table exists...", tableName))
     }
 }

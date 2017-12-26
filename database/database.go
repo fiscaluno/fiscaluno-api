@@ -17,7 +17,7 @@ func GetInstance() (*gorm.DB) {
         db, err = gorm.Open("mysql", getConnectionString())
         
         if err != nil {
-            log.Error.Println(err)
+            log.Error(err)
             panic("error at database connection")
         }
     }
