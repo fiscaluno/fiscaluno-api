@@ -22,7 +22,7 @@ func GetInstance() (*gorm.DB) {
         db, err = gorm.Open("mysql", connect)
         
         if err != nil {
-            fmt.Print("error at database connection")
+            panic("error at database connection")
         }
     }
 
