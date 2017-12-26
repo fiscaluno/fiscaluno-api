@@ -20,6 +20,9 @@ Gopkg.lock
 .env
 .docker_build/
 
+# Fiscaluno Log
+fiscalog/*.log
+
 # Development
 config/config.json
 playground.go
