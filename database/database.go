@@ -5,6 +5,7 @@ import (
     "github.com/jinzhu/gorm"
     "github.com/fiscaluno/fiscaluno-api/config"
     _ "github.com/jinzhu/gorm/dialects/mysql"
+    log "github.com/fiscaluno/fiscaluno-api/fiscalog"
 )
 
 var db *gorm.DB
@@ -16,6 +17,7 @@ func GetInstance() (*gorm.DB) {
         db, err = gorm.Open("mysql", getConnectionString())
         
         if err != nil {
+            log.Error.Println(err)
             panic("error at database connection")
         }
     }
