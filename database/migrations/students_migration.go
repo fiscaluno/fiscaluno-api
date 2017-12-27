@@ -1,12 +1,11 @@
 package migrations
 
-type Student struct {
-    Id      uint
-    Name    string  `gorm:"size:100"`
-    Email   string  `gorm:"not null;unique"`
-    Age     int32   `gorm:type:tinyint;unsigned`
-}
+import (
+    "github.com/fiscaluno/fiscaluno-api/models"
+)
+
+var Student = models.Student{}
 
 func init() {
-    Create(&Student{})
+    Create(&Student)
 }
