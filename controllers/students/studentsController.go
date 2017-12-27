@@ -2,7 +2,6 @@ package students
 
 import (
     "github.com/kataras/iris"
-    _"github.com/fiscaluno/fiscaluno-api/database/migrations"
     models "github.com/fiscaluno/fiscaluno-api/models"
 )
 
