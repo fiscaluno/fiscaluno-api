@@ -1,12 +1,9 @@
 package models
 
 import (
-	"github.com/fiscaluno/fiscaluno-api/database"
 	"github.com/jinzhu/gorm"
 	"github.com/mitchellh/mapstructure"
 )
-
-var db = database.GetInstance()
 
 type Student struct {
 	gorm.Model
