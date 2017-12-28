@@ -1,7 +1,7 @@
 package migrations
 
 import (
-    model "github.com/fiscaluno/fiscaluno-api/models/student"
+    model "github.com/fiscaluno/fiscaluno-api/models"
 )
 
 var Student = model.Student{}
