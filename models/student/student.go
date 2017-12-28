@@ -1,9 +1,9 @@
 package student
 
 import (
-	"github.com/mitchellh/mapstructure"
 	models "github.com/fiscaluno/fiscaluno-api/models"
 	"github.com/fiscaluno/fiscaluno-api/models/institution"
+	"github.com/mitchellh/mapstructure"
 )
 
 type Student models.Student

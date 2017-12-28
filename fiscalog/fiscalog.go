@@ -12,7 +12,7 @@ var (
 	InfoLogger    *log.Logger
 	WarningLogger *log.Logger
 	ErrorLogger   *log.Logger
-	LogFile 	  *os.File
+	LogFile       *os.File
 )
 
 func init() {
@@ -47,7 +47,6 @@ func init() {
 
 }
 
-
 func Trace(context string) {
 	TraceLogger.Println(context)
 	defer LogFile.Close()
@@ -63,7 +62,7 @@ func Warning(context string) {
 	defer LogFile.Close()
 }
 
-func Error(context interface {}) {
+func Error(context interface{}) {
 	ErrorLogger.Println(context)
 	defer LogFile.Close()
 }
