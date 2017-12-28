@@ -19,7 +19,7 @@ type Student struct {
 
 	// Insitution Relationship - Belongs To
 	institution   int `gorm:"ForeignKey:InstitutionID"`
-	InstitutionID int `gorm:"not null;ForeignKey:" json:"InstitutionId"`
+	InstitutionID int `gorm:"not null" json:"InstitutionId"`
 
 	// Course Relationship - Belongs To
 	// CourseID      int    `gorm:"not null" json:"CourseId"`
