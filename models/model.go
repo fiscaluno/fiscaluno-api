@@ -4,7 +4,7 @@ import (
 	"github.com/fiscaluno/fiscaluno-api/database"
 )
 
-var db = database.GetInstance()
+var DB = database.GetInstance()
 
 // Model contract
 type Model interface {
