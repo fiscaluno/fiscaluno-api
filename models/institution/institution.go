@@ -10,6 +10,11 @@ type Institution models.Institution
 // database instance
 var db = models.DB
 
+func (institution *Institution) Students() (students []models.Student) {
+    db.Model(&institution).Related(&students)
+    return
+}
+
 // Creates new model of institution
 // Return institution
 func Create(attributes map[string]interface{}) *Institution {

@@ -13,5 +13,4 @@ type Institution struct {
     Website  string `gorm:"size:30",json:Website`
     Phone    string `gorm:"size:10",json:Phone`
     ImageUri string `gorm:"size:50",json:ImageUri`
-    students []Student
 }
