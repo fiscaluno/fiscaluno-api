@@ -1,10 +1,10 @@
 package migrations
 
 import (
-    "github.com/fiscaluno/fiscaluno-api/models"
+    model "github.com/fiscaluno/fiscaluno-api/models/student"
 )
 
-var Student = models.Student{}
+var Student = model.Student{}
 
 func init() {
     Create(&Student)
