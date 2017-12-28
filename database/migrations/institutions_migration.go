@@ -4,8 +4,8 @@ import (
     model "github.com/fiscaluno/fiscaluno-api/models"
 )
 
-var Student = model.Student{}
+var Institution = model.Institution{}
 
 func init() {
-    Create(&Student)
+    Create(&Institution)
 }
