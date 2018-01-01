@@ -1,7 +1,8 @@
 package students
 
 import (
-	models "github.com/fiscaluno/fiscaluno-api/models"
+    "strconv"
+	students "github.com/fiscaluno/fiscaluno-api/models/student"
 	"github.com/kataras/iris"
 )
 
@@ -10,8 +11,13 @@ func InsertStudent(ctx iris.Context) {
 	values := ctx.FormValues()
 
 	for key, value := range values {
-		attributes[key] = value[0]
+        intVal, err := strconv.Atoi(value[0])
+        if err != nil {
+          attributes[key] = value[0]
+        }else {
+		  attributes[key] = intVal
+        }
 	}
 
-	models.CreateStudent(attributes).Save()
+	students.Create(attributes).Save()
 }
