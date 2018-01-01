@@ -16,6 +16,6 @@ func userMiddleware(ctx iris.Context) {
 var app = iris.New()
 
 // Iris application containing routes
-func Router() (*iris.Application) {
-    return app
+func Router() *iris.Application {
+	return app
 }

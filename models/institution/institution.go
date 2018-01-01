@@ -1,8 +1,8 @@
 package institution
 
 import (
-    "github.com/mitchellh/mapstructure"
 	models "github.com/fiscaluno/fiscaluno-api/models"
+	"github.com/mitchellh/mapstructure"
 )
 
 type Institution models.Institution
@@ -11,8 +11,8 @@ type Institution models.Institution
 var db = models.DB
 
 func (institution *Institution) Students() (students []models.Student) {
-    db.Model(&institution).Related(&students)
-    return
+	db.Model(&institution).Related(&students)
+	return
 }
 
 // Creates new model of institution

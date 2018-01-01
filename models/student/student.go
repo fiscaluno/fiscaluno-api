@@ -1,9 +1,9 @@
 package student
 
 import (
-	"github.com/mitchellh/mapstructure"
 	models "github.com/fiscaluno/fiscaluno-api/models"
 	"github.com/fiscaluno/fiscaluno-api/models/institution"
+	"github.com/mitchellh/mapstructure"
 )
 
 type Student models.Student
@@ -28,8 +28,11 @@ func Create(attributes map[string]interface{}) *Student {
 }
 
 // Save new student at database
-func (student *Student) Save() {
-	db.Create(&student)
+func (student *Student) Save() (err error) {
+	if rows := db.Create(&student).RowsAffected; rows != 1 {
+		return err
+	}
+	return
 }
 
 // Find student by id
