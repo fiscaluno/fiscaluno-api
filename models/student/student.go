@@ -28,7 +28,7 @@ func Create(attributes map[string]interface{}) *Student {
 }
 
 // Save new student at database
-func (student *Student) Save() (err error){
+func (student *Student) Save() (err error) {
 	if rows := db.Create(&student).RowsAffected; rows != 1 {
 		return err
 	}
