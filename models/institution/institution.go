@@ -22,6 +22,12 @@ func (institution *Institution) GeneralReviews() (reviews []models.GeneralReview
 	return
 }
 
+// Institution has many detailed reviews
+func (institution *Institution) DetailedReviews() (reviews []models.DetailedReview) {
+	db.Model(&institution).Related(&reviews)
+	return
+}
+
 // Creates new model of institution
 // Return institution
 func Create(attributes map[string]interface{}) *Institution {
