@@ -39,3 +39,19 @@ func FindById(ctx iris.Context) {
 		ctx.JSON(student.Find(id))
 	}
 }
+
+// Finds student's institution- GET Method
+func StudentInstitution(ctx iris.Context) {
+	id, err := ctx.Params().GetInt("id")
+
+	if err != nil {
+		ctx.JSON(err)
+	}
+
+	// Checks if student exists at database
+	if reflect.DeepEqual(student.Student{}, *student.Find(id)) {
+		ctx.StatusCode(404)
+	} else {
+		ctx.JSON(student.Find(id).Institution())
+	}
+}
