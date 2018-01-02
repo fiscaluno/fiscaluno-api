@@ -35,7 +35,7 @@ func InstitutionReviews(ctx iris.Context) {
 		ctx.JSON(err)
 	}
 
-	ctx.JSON(id)
+	ctx.JSON(institution.Find(id).Reviews())
 }
 
 // All general reviews from institution

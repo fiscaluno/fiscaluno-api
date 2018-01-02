@@ -16,6 +16,22 @@ func (institution *Institution) Students() (students []models.Student) {
 	return
 }
 
+func (institution *Institution) Reviews() []interface{} {
+	general := institution.GeneralReviews()
+	detailed := institution.DetailedReviews()
+	reviews := make([]interface{}, len(general)+len(detailed))
+
+	for x, review := range general {
+		reviews[x] = review
+	}
+
+	for x, review := range detailed {
+		reviews[x+len(general)] = review
+	}
+
+	return reviews
+}
+
 // Institution has many general reviews
 func (institution *Institution) GeneralReviews() (reviews []models.GeneralReview) {
 	db.Model(&institution).Related(&reviews)
