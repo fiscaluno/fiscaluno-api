@@ -14,8 +14,8 @@ func userMiddleware(ctx iris.Context) {
 }
 
 func Handle(app *iris.Application) {
-	users_routes := app.Party("/users", userMiddleware)
+	usersRoutes := app.Party("/users", userMiddleware)
 	{
-		users_routes.Get("/id", teste)
+		usersRoutes.Get("/id", teste)
 	}
 }

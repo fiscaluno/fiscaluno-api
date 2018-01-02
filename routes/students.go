@@ -1,11 +1,11 @@
 package routes
 
-func init() {  
+func init() {
 
-    users_routes := app.Party("/students", userMiddleware)
+	usersRoutes := app.Party("/students", userMiddleware)
 
-    {
-        users_routes.Get("/id", teste)
-    }
+	{
+		userRoutes.Get("/id", teste)
+	}
 
 }
