@@ -26,3 +26,14 @@ func InstitutionById(ctx iris.Context) {
 		ctx.JSON(institution.Find(id))
 	}
 }
+
+// All general reviews from institution
+func InstitutionGeneralReviews(ctx iris.Context) {
+	id, err := ctx.Params().GetInt("id")
+
+	if err != nil {
+		ctx.JSON(err)
+	}
+
+	ctx.JSON(institution.Find(id).GeneralReviews())
+}

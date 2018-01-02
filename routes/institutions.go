@@ -9,6 +9,7 @@ func init() {
 	{
 		info_routes.Get("/", controller.AllInstitutions)
 		info_routes.Get("/{id:int}", controller.InstitutionById)
+		info_routes.Get("/{id:int}/reviews/general", controller.InstitutionGeneralReviews)
 	}
 
 }
