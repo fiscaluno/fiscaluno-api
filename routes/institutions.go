@@ -4,12 +4,12 @@ import controller "github.com/fiscaluno/fiscaluno-api/controllers/institutions"
 
 func init() {
 
-	info_routes := app.Party("/institutions", userMiddleware)
+	institutions_routes := app.Party("/institutions", userMiddleware)
 
 	{
-		info_routes.Get("/", controller.AllInstitutions)
-		info_routes.Get("/{id:int}", controller.InstitutionById)
-		info_routes.Get("/{id:int}/reviews/general", controller.InstitutionGeneralReviews)
+		institutions_routes.Get("/", controller.AllInstitutions)
+		institutions_routes.Get("/{id:int}", controller.InstitutionById)
+		institutions_routes.Get("/{id:int}/reviews/general", controller.InstitutionGeneralReviews)
 	}
 
 }
