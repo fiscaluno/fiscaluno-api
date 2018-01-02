@@ -2,10 +2,12 @@ package students
 
 import (
     "strconv"
-	students "github.com/fiscaluno/fiscaluno-api/models/student"
+    "reflect"
+	student "github.com/fiscaluno/fiscaluno-api/models/student"
 	"github.com/kataras/iris"
 )
 
+// Creates new student - POST Method
 func InsertStudent(ctx iris.Context) {
 	var attributes = make(map[string]interface{})
 	values := ctx.FormValues()
@@ -19,5 +21,21 @@ func InsertStudent(ctx iris.Context) {
         }
 	}
 
-	students.Create(attributes).Save()
+	student.Create(attributes).Save()
+}
+
+// Find student at database - GET Method
+func FindById(ctx iris.Context) {
+    id, err := ctx.Params().GetInt("id")
+    
+    if err != nil {
+        ctx.JSON(err)
+    }
+    
+    // Checks if student exists at database
+    if reflect.DeepEqual(student.Student{}, *student.Find(id)) {
+        ctx.StatusCode(404)
+    } else {
+        ctx.JSON(student.Find(id))    
+    }
 }
