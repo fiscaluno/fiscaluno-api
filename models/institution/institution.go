@@ -10,8 +10,21 @@ type Institution models.Institution
 // database instance
 var db = models.DB
 
+// Institution has many students
 func (institution *Institution) Students() (students []models.Student) {
 	db.Model(&institution).Related(&students)
+	return
+}
+
+// Institution has many general reviews
+func (institution *Institution) GeneralReviews() (reviews []models.GeneralReview) {
+	db.Model(&institution).Related(&reviews)
+	return
+}
+
+// Institution has many detailed reviews
+func (institution *Institution) DetailedReviews() (reviews []models.DetailedReview) {
+	db.Model(&institution).Related(&reviews)
 	return
 }
 
@@ -35,6 +48,7 @@ func Find(id int) (institution *Institution) {
 	return
 }
 
+// All institutions
 func All() (institutions []Institution) {
 	db.Find(&institutions)
 	return
