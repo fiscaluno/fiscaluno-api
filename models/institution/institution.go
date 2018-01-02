@@ -34,3 +34,8 @@ func Find(id int) (institution *Institution) {
 	db.First(institution, id)
 	return
 }
+
+func All() (institutions []Institution) {
+	db.Find(&institutions)
+	return
+}
