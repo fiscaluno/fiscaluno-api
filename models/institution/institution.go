@@ -16,11 +16,10 @@ func (institution *Institution) Students() (students []models.Student) {
 	return
 }
 
-
-func (institution *Institution) Reviews() ([]interface{}) {
+func (institution *Institution) Reviews() []interface{} {
 	general := institution.GeneralReviews()
 	detailed := institution.DetailedReviews()
-	reviews := make([]interface{}, len(general) + len(detailed))
+	reviews := make([]interface{}, len(general)+len(detailed))
 
 	for x, review := range general {
 		reviews[x] = review
