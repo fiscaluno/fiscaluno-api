@@ -7,7 +7,7 @@ func init() {
 	info_routes := app.Party("/institutions", userMiddleware)
 
 	{
-        info_routes.Get("/", controller.AllInstitutions)
+		info_routes.Get("/", controller.AllInstitutions)
 		info_routes.Get("/{id:int}", controller.InstitutionById)
 	}
 
