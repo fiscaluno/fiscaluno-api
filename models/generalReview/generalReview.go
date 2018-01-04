@@ -39,3 +39,9 @@ func Find(id int) (review *GeneralReview) {
 	db.First(review, id)
 	return
 }
+
+// All general reviews
+func All() (reviews []GeneralReview) {
+	db.Find(&reviews)
+	return
+}
