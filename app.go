@@ -1,11 +1,11 @@
 package main
 
 import (
-    // "fmt"
-    "github.com/fiscaluno/fiscaluno-api/server"
-    _"github.com/fiscaluno/fiscaluno-api/helpers"
+	// "fmt"
+	_ "github.com/fiscaluno/fiscaluno-api/helpers"
+	"github.com/fiscaluno/fiscaluno-api/server"
 )
 
 func main() {
-    server.Listen()
+	server.Listen()
 }

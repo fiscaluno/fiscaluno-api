@@ -2,10 +2,10 @@ package config
 
 import (
 	"encoding/json"
+	"github.com/fiscaluno/fiscaluno-api/helpers"
 	"os"
 	"reflect"
 	"strings"
-	"github.com/fiscaluno/fiscaluno-api/helpers"
 )
 
 // Configuration file path
