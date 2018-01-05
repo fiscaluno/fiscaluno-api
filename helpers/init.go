@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	// "io"
 	"bufio"
 	"encoding/json"
 	"fmt"
@@ -21,6 +20,7 @@ func init() {
 	CheckConfigFile()
 }
 
+// User home directory
 func GetUserHome() string {
 	usr, err := user.Current()
 	if err != nil {
@@ -30,6 +30,8 @@ func GetUserHome() string {
 	return usr.HomeDir
 }
 
+// Checks if fiscaluno directory exists or not
+// if not exists, creates directory
 func CheckFiscalunoDir() {
 	if _, err := os.Stat(F_DIRPATH); os.IsNotExist(err) {
 		fmt.Println("Creating fiscaluno directory...")
@@ -39,12 +41,15 @@ func CheckFiscalunoDir() {
 	}
 }
 
+// Checks if database config file exists or not
+// if not exists, creates file
 func CheckConfigFile() {
 	if _, err := os.Stat(F_CONFFILE); os.IsNotExist(err) {
 		createConfigFile()
 	}
 }
 
+// Puts database information at config file
 func createConfigFile() {
 	configFile, err := os.OpenFile(F_CONFFILE, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
@@ -58,6 +63,7 @@ func createConfigFile() {
 	defer configFile.Close()
 }
 
+// Config file json content
 func configFileContent() []byte {
 	var fileContentMap map[string]string
 
