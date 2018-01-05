@@ -34,6 +34,13 @@ dep ensure
 * [Iris](https://github.com/kataras/iris) - The web framework used
 
 
+## Go Dependencies
+
+* [Iris](https://github.com/kataras/iris)
+* [Gorm](https://github.com/jinzhu/gorm)
+* [Mapstructure](https://github.com/mitchellh/mapstructure)
+* [Terminal](https://golang.org/x/crypto/ssh/terminal)
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://github.com/fiscaluno/fiscaluno-api/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
