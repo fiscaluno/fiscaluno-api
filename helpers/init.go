@@ -2,14 +2,14 @@ package helpers
 
 import (
 	// "io"
-	"os"
-	"fmt"
-	"log"
 	"bufio"
+	"encoding/json"
+	"fmt"
+	"golang.org/x/crypto/ssh/terminal"
+	"log"
+	"os"
 	"os/user"
-    "syscall"
-    "encoding/json"
-    "golang.org/x/crypto/ssh/terminal"
+	"syscall"
 )
 
 var F_DIRPATH string = GetUserHome() + "/.fiscaluno"
@@ -41,16 +41,16 @@ func CheckFiscalunoDir() {
 
 func CheckConfigFile() {
 	if _, err := os.Stat(F_CONFFILE); os.IsNotExist(err) {
-		CreateConfigFile()
+		createConfigFile()
 	}
 }
 
-func CreateConfigFile() {
+func createConfigFile() {
 	configFile, err := os.OpenFile(F_CONFFILE, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	fileContent := configFileContent()
 	if _, err := configFile.Write(fileContent); err != nil {
 		log.Fatal(err)
@@ -70,13 +70,13 @@ func configFileContent() []byte {
 	databaseUser, _ := reader.ReadString('\n')
 	fmt.Print("\x1b[96;1mDatabase password: \x1b[m")
 	databasePassInput, _ := terminal.ReadPassword(int(syscall.Stdin))
-    databasePass := string(databasePassInput)
+	databasePass := string(databasePassInput)
 
 	fmt.Println("")
 	fileContentMap = map[string]string{
-		"DB_HOST": databaseHost[0:len(databaseHost)-1],
-		"DB_NAME": databaseName[0:len(databaseName)-1],
-		"DB_USER": databaseUser[0:len(databaseUser)-1],
+		"DB_HOST":     databaseHost[0 : len(databaseHost)-1],
+		"DB_NAME":     databaseName[0 : len(databaseName)-1],
+		"DB_USER":     databaseUser[0 : len(databaseUser)-1],
 		"DB_PASSWORD": databasePass,
 	}
 
