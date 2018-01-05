@@ -32,11 +32,6 @@ dep ensure
 ## Built With
 
 * [Iris](https://github.com/kataras/iris) - The web framework used
-
-
-## Go Dependencies
-
-* [Iris](https://github.com/kataras/iris)
 * [Gorm](https://github.com/jinzhu/gorm)
 * [Mapstructure](https://github.com/mitchellh/mapstructure)
 * [Terminal](https://golang.org/x/crypto/ssh/terminal)
