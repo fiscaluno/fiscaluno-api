@@ -1,57 +1,33 @@
 package helpers
 
 import (
-	"fmt"
-	"io"
-	"log"
+	// "io"
 	"os"
+	"fmt"
+	"log"
+	"bufio"
 	"os/user"
+    "syscall"
+    "encoding/json"
+    "golang.org/x/crypto/ssh/terminal"
 )
 
 var F_DIRPATH string = GetUserHome() + "/.fiscaluno"
+var F_CONFFILE string = F_DIRPATH + "/config.json"
+var F_LOGFILE string = F_DIRPATH + "/fiscaluno.log"
 
 func init() {
 	CheckFiscalunoDir()
-	CopyConfigFile()
+	CheckConfigFile()
 }
 
 func GetUserHome() string {
 	usr, err := user.Current()
-
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	return usr.HomeDir
-}
-
-func CopyConfigFile() error {
-	originalPath := os.Getenv("GOPATH")
-	configFilePath := originalPath + "/src/github.com/fiscaluno/fiscaluno-api/config/config.json"
-
-	inputFile, err := os.Open(configFilePath)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer inputFile.Close()
-
-	_, err = os.Stat(F_DIRPATH + "/config.json")
-	if err != nil {
-		_, _ = os.Create(F_DIRPATH + "/config.json")
-	}
-
-	outputFile, err := os.OpenFile(F_DIRPATH+"/config.json", os.O_WRONLY, os.ModePerm)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer outputFile.Close()
-
-	_, err = io.Copy(outputFile, inputFile)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	return outputFile.Close()
 }
 
 func CheckFiscalunoDir() {
@@ -61,4 +37,53 @@ func CheckFiscalunoDir() {
 	} else {
 		fmt.Println("Fiscaluno directory already exists...")
 	}
+}
+
+func CheckConfigFile() {
+	if _, err := os.Stat(F_CONFFILE); os.IsNotExist(err) {
+		CreateConfigFile()
+	}
+}
+
+func CreateConfigFile() {
+	configFile, err := os.OpenFile(F_CONFFILE, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	
+	fileContent := configFileContent()
+	if _, err := configFile.Write(fileContent); err != nil {
+		log.Fatal(err)
+	}
+	defer configFile.Close()
+}
+
+func configFileContent() []byte {
+	var fileContentMap map[string]string
+
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("\x1b[96;1mDatabase host: \x1b[m")
+	databaseHost, _ := reader.ReadString('\n')
+	fmt.Print("\x1b[96;1mDatabase name: \x1b[m")
+	databaseName, _ := reader.ReadString('\n')
+	fmt.Print("\x1b[96;1mDatabase user: \x1b[m")
+	databaseUser, _ := reader.ReadString('\n')
+	fmt.Print("\x1b[96;1mDatabase password: \x1b[m")
+	databasePassInput, _ := terminal.ReadPassword(int(syscall.Stdin))
+    databasePass := string(databasePassInput)
+
+	fmt.Println("")
+	fileContentMap = map[string]string{
+		"DB_HOST": databaseHost[0:len(databaseHost)-1],
+		"DB_NAME": databaseName[0:len(databaseName)-1],
+		"DB_USER": databaseUser[0:len(databaseUser)-1],
+		"DB_PASSWORD": databasePass,
+	}
+
+	fileContentJson, err := json.Marshal(fileContentMap)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return fileContentJson
 }
