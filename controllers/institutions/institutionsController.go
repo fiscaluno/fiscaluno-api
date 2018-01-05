@@ -26,36 +26,3 @@ func InstitutionById(ctx iris.Context) {
 		ctx.JSON(institution.Find(id))
 	}
 }
-
-// All reviews from institution
-func InstitutionReviews(ctx iris.Context) {
-	id, err := ctx.Params().GetInt("id")
-
-	if err != nil {
-		ctx.JSON(err)
-	}
-
-	ctx.JSON(institution.Find(id).Reviews())
-}
-
-// All general reviews from institution
-func InstitutionGeneralReviews(ctx iris.Context) {
-	id, err := ctx.Params().GetInt("id")
-
-	if err != nil {
-		ctx.JSON(err)
-	}
-
-	ctx.JSON(institution.Find(id).GeneralReviews())
-}
-
-// All detailed reviews from institution
-func InstitutionDetailedReviews(ctx iris.Context) {
-	id, err := ctx.Params().GetInt("id")
-
-	if err != nil {
-		ctx.JSON(err)
-	}
-
-	ctx.JSON(institution.Find(id).DetailedReviews())
-}

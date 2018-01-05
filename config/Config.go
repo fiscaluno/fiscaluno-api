@@ -2,13 +2,14 @@ package config
 
 import (
 	"encoding/json"
+	"github.com/fiscaluno/fiscaluno-api/helpers"
 	"os"
 	"reflect"
 	"strings"
 )
 
 // Configuration file path
-var FILE_PATH, _ = os.Getwd()
+var FILE_PATH = helpers.F_DIRPATH
 
 // Config struct
 type Config struct {
@@ -23,7 +24,7 @@ var configuration Config
 
 // SetUp configuration values
 func SetUp() {
-	config_file, _err := os.Open(FILE_PATH + "/config/config.json")
+	config_file, _err := os.Open(FILE_PATH + "/config.json")
 
 	if _err != nil {
 		panic(_err)

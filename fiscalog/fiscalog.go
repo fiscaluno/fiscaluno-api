@@ -1,6 +1,7 @@
 package fiscalog
 
 import (
+	"github.com/fiscaluno/fiscaluno-api/helpers"
 	"io"
 	"io/ioutil"
 	"log"
@@ -16,13 +17,7 @@ var (
 )
 
 func init() {
-	currPath, err := os.Getwd()
-
-	if err != nil {
-		log.Fatalln("Failed to get current dir: ", err)
-	}
-
-	logFilePath := currPath + "/fiscalog/fiscaluno.log"
+	logFilePath := helpers.F_DIRPATH + "/fiscaluno.log"
 	LogFile, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
 	if err != nil {
