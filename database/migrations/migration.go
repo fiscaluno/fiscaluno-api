@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/fiscaluno/fiscaluno-api/database"
 	log "github.com/fiscaluno/fiscaluno-api/fiscalog"
+	models "github.com/fiscaluno/fiscaluno-api/models"
 	"reflect"
 	"regexp"
 )
@@ -16,7 +17,15 @@ func init() {
 }
 
 func Migrate() {
-	log.Info("Database migrated")
+	var DetailedReview = models.DetailedReview{}
+	var GeneralReview = models.GeneralReview{}
+	var Institution = models.Institution{}
+	var Student = models.Student{}
+
+	Create(&DetailedReview)
+	Create(&GeneralReview)
+	Create(&Institution)
+	Create(&Student)
 }
 
 // Create new Schema to database
